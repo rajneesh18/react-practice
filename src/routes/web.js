@@ -8,7 +8,7 @@ const PageNotFound  = () => {
     </>
 }
 
-function Products(){
+const Products  = () => {
     const products = ["Learning React", "Pro React", "Beginning React"];
 
     const listProducts = products.map((product) => {
