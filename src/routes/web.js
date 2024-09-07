@@ -8,11 +8,26 @@ const PageNotFound  = () => {
     </>
 }
 
+function Products(){
+    const products = ["Learning React", "Pro React", "Beginning React"];
+
+    const listProducts = products.map((product) => {
+       return <li key={product.toString()}>{product}</li>
+    })
+    
+    return (
+        <div>
+            <ul>{listProducts}</ul>
+        </div>
+    )
+}
+
 function Web() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
+                <Route path="/list-product" element={ <Products /> } />
                 
                 <Route path="/*" element={ <PageNotFound /> } />
 
