@@ -27,9 +27,9 @@ function Web() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/list-product" element={ <Products /> } />
+                <Route path="list-product" element={ <Products /> } />
                 
-                <Route path="/*" element={ <PageNotFound /> } />
+                <Route path="*" element={ <PageNotFound /> } />
 
             </Routes>
         </BrowserRouter>
