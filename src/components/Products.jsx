@@ -1,14 +1,24 @@
 
-const Products  = () => {
-    const products = ["Learning React", "Pro React", "Beginning React"];
 
-    const listProducts = products.map((product) => {
-       return <li key={product.toString()}>{product}</li>
-    })
+import Rating from "./Rating";
+
+
+const Products  = () => {
+    // const products = ["Learning React", "Pro React", "Beginning React"];
+
+    // const listProducts = products.map((product) => {
+    //    return <li key={product.toString()}>{product}</li>
+    // })
     
     return (
         <div>
-            <ul>{listProducts}</ul>
+            {/* <ul>{listProducts}</ul> */}
+
+            <Rating rating = '1' />
+            <Rating rating = '2' />
+            <Rating rating = '3' />
+            <Rating rating = '4' />
+            <Rating rating = '5' />
         </div>
     )
 }
