@@ -30,8 +30,7 @@ const getProducts = () => {
 }
 
 const Products  = () => {
-    // const products = getProducts();
-    const products = [];
+    const products = getProducts();
 
 
     const listProducts = products.map((product) => 
@@ -40,8 +39,7 @@ const Products  = () => {
 
     return (
         <div>
-            { listProducts.length > 0 && <ul>{listProducts}</ul> }
-            { listProducts.length === 0 && <ul>No Products to display</ul> }
+            { listProducts.length > 0 ? (<ul>{listProducts}</ul>) : ( <ul>No Products to display</ul> ) }
         </div>
     )
 }
