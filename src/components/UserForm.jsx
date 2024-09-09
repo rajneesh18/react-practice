@@ -6,21 +6,23 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 const UserForm = () => {
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const handleSubmit = (state, formData) => {
-        setEmail(`${formData.get("email")}`)
-        setPassword(`${formData.get("password")}`)
+        // setEmail(`${formData.get("email")}`)
+        // setPassword(`${formData.get("password")}`)
+
+        const email = formData.get("email");
+        const password = formData.get("password");
 
         // Vailidate Email
         let emailValid = false;
-        if(formData.get("email").length === 0) state.emailError = "Email is required"
-        else if(formData.get("email").length < 6) {
+        if(email.length === 0) state.emailError = "Email is required"
+        else if(email.length < 6) {
             state.emailError = "Email should be minimum 6 Characters"
         } 
-        else if(formData.get("email").indexOf('') > 0) {
+        else if(email.indexOf('') > 0) {
             state.emailError = "Email Cannot contain spaces"
         } else {
             state.emailError = ""
@@ -37,7 +39,7 @@ const UserForm = () => {
     const [state, formAction] = useActionState(handleSubmit, {
         emailError: ""
     })
-    console.log(state);
+    // console.log(state);
 
 
     return (
