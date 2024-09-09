@@ -1,5 +1,5 @@
 import { useState, useActionState  } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Alert } from 'react-bootstrap'
 
 // Added bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -10,15 +10,14 @@ const UserForm = () => {
     const [password, setPassword] = useState("")
 
     const handleSubmit = (state, formData) => {
-        // setEmail(`${formData.get("email")}`)
-        // setPassword(`${formData.get("password")}`)
-
         const email = formData.get("email");
         const password = formData.get("password");
 
         // Vailidate Email
         let emailValid = false;
-        if(email.length === 0) state.emailError = "Email is required"
+        if(email.length === 0) {
+            state.emailError = "Email is required"
+        }
         else if(email.length < 6) {
             state.emailError = "Email should be minimum 6 Characters"
         } 
@@ -30,17 +29,17 @@ const UserForm = () => {
         }
 
         if(emailValid) {
-            alert(`Email: ${email} \n Password: ${password}`)
+            alert(`Email: ${email} \n Password: ${password}`);
+            setEmail("")
+            setPassword("")
         }
-        console.log(state);
+        
         return state;
     }
 
     const [state, formAction] = useActionState(handleSubmit, {
         emailError: ""
     })
-    // console.log(state);
-
 
     return (
         <div>
@@ -52,12 +51,15 @@ const UserForm = () => {
                             placeholder='Enter email' 
                             name="email" 
                             onChange={event => setEmail(event.target.value)}
-                             />
+                            value={email}
+                            />
 
                     <Form.Text className='text-muted'>
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
+
+                {state && state.emailError.length > 0 && <Alert variant='danger' style={{padding: '1px', width: '50%'}}>{state.emailError}</Alert>}
                 
                 <Form.Group className='mb-3' controlId='formBasicPassword' >
                     <Form.Label>Password</Form.Label>
@@ -66,6 +68,7 @@ const UserForm = () => {
                             placeholder='Password' 
                             name="password"
                             onChange={event => setPassword(event.target.value)} 
+                            value={password}
                             />
                 </Form.Group>
 
@@ -81,4 +84,4 @@ const UserForm = () => {
 
 export default UserForm
 
-/** Showing Specific Validation Errors */
+/** Showing Validation Error Messages */
